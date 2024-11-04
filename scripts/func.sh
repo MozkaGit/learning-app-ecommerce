@@ -1,7 +1,7 @@
 #!/bin/bash
-package_name=$1
 
 install_package() {
+  local package_name="$1"
   if [ -z "$package_name" ]; then
     echo "Error: Package name is not provided"
     return 1
@@ -13,6 +13,7 @@ install_package() {
 }
 
 start_service() {
+  local package_name="$1"
   if [[ -z "$package_name" ]]; then
     echo "Error: Service name is not provided"
     return 1

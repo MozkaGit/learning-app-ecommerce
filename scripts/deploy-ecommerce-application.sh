@@ -48,7 +48,6 @@ echo "------------------ Configuring Web Server ------------------"
 
 print_color "green" "Configuring httpd configuration file.."
 sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
-mv .env /var/www/html/
 print_color "green" "Starting HTTPD.."
 start_service httpd
 

@@ -48,6 +48,7 @@ start_service httpd
 print_color "green" "---------------- Setup Web Server - Finished ------------------"
 
 # Clone e-commerce repository into web server
-sudo git clone https://github.com/kodekloudhub/learning-appsudo sed -i 's#// \(.*mysqli_connect.*\)#\1#' /var/www/html/index.php
+sudo git clone https://github.com/kodekloudhub/learning-app /var/www/html
+sudo sed -i 's#// \(.*mysqli_connect.*\)#\1#' /var/www/html/index.php
 sudo sed -i 's#// \(\$link = mysqli_connect(.*172\.20\.1\.101.*\)#\1#; s#^\(\s*\)\(\$link = mysqli_connect(\$dbHost, \$dbUser, \$dbPassword, \$dbName);\)#\1// \2#' /var/www/html/index.php-ecommerce.git /var/print_color "green" "Updating index.php.."
 sudo sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.phpwww/html/

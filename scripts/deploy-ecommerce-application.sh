@@ -34,6 +34,12 @@ echo "------------------ Setup Database Server ------------------"
 print_color "green" "Starting MariaDB Server.."
 start_service mariadb
 sudo mysql <db-load-script.sql
+cat >/var/www/html/.env <<-EOF
+DB_HOST=localhost
+DB_USER=ecomuser
+DB_PASSWORD=ecompassword
+DB_NAME=ecomdb
+EOF
 
 print_color "green" "---------------- Setup Database Server - Finished ------------------"
 
@@ -41,14 +47,11 @@ print_color "green" "---------------- Setup Database Server - Finished ---------
 echo "------------------ Configuring Web Server ------------------"
 
 print_color "green" "Configuring httpd configuration file.."
-sudo sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
+sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
 print_color "green" "Starting HTTPD.."
 start_service httpd
 
 print_color "green" "---------------- Setup Web Server - Finished ------------------"
 
 # Clone e-commerce repository into web server
-sudo git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html
-sudo sed -i 's#// \(.*mysqli_connect.*\)#\1#' /var/www/html/index.php
-sudo sed -i 's#// \(\$link = mysqli_connect(.*172\.20\.1\.101.*\)#\1#; s#^\(\s*\)\(\$link = mysqli_connect(\$dbHost, \$dbUser, \$dbPassword, \$dbName);\)#\1// \2#' /var/www/html/index.php-ecommerce.git /var/print_color "green" "Updating index.php.."
-sudo sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.phpwww/html/
+sudo git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/

@@ -41,7 +41,7 @@ print_color "green" "---------------- Setup Database Server - Finished ---------
 echo "------------------ Configuring Web Server ------------------"
 
 print_color "green" "Configuring httpd configuration file.."
-sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
+sudo sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
 print_color "green" "Starting HTTPD.."
 start_service httpd
 

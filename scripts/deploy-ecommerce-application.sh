@@ -17,10 +17,10 @@ done
 start_service firewalld
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
 firewall-cmd --permanent --zone=public --add-port=80/tcp
-firewalld-cmd --reload
+firewall-cmd --reload
 
 # Configure mariadb database
-start_service mariadb-server
+start_service mariadb
 mysql <db-load-script.sql
 
 # Configure httpd
